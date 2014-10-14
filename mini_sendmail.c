@@ -532,7 +532,7 @@ parse_for_recipients( char* message )
 static void
 add_recipient( char* recipient, int len )
     {
-    char buf[1000];
+    char buf[1000], *ptr;
     int status;
 
     /* Skip leading whitespace. */
@@ -543,10 +543,12 @@ add_recipient( char* recipient, int len )
 	}
 
     /* Strip off any angle brackets. */
-    while ( len > 0 && *recipient == '<' )
-	{
-	++recipient;
-	--len;
+	for(ptr = recipient; ptr < recipient+len; ptr++) {
+		if ( *ptr == '<' )
+		{
+			len -= ptr-recipient+1;
+			recipient = ptr+1;
+		}
 	}
     while ( len > 0 && recipient[len-1] == '>' )
 	--len;
