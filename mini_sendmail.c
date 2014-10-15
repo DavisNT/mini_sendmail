@@ -152,14 +152,15 @@ main( int argc, char** argv )
 #ifdef DO_GETPWUID
 	struct passwd* pw = getpwuid( getuid() );
 	if ( pw == (struct passwd*) 0 )
-	    {
-	    (void) fprintf( stderr, "%s: can't determine username\n", argv0 );
-	    exit( 1 );
-	    }
-	username = pw->pw_name;
+	{
+		username = "app";
+	}
+	else
+	{
+		username = pw->pw_name;
+	}
 #else /* DO_GETPWUID */
-	(void) fprintf( stderr, "%s: can't determine username\n", argv0 );
-	exit( 1 );
+	username = "app";
 #endif /* DO_GETPWUID */
 	}
 

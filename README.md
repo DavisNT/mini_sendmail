@@ -7,6 +7,8 @@ Author of this repository is not related to Jef Poskanzer in any way.
 ## Additional features/bugfixes of this fork
 
 * Fix sending e-mail to addresses in format `Full Name <name@example.com>`.
+* Support `chroot` jails without `/proc` and `utmp` (by using "app" instead of 
+username upon failure to determine it).
 
 # Original README for mini_sendmail
      mini_sendmail - accept email on behalf of real sendmail
